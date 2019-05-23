@@ -40,7 +40,7 @@ create table UserInfo
     id int generated always as identity(start with 1 , increment by 1),
     name varchar(255),
     surname varchar(255),
-    constraint pk_id_userinfo primary key(id),
+    constraint pk_id_userinfo primary key(id)
     );
 
 create table Roles
@@ -74,7 +74,7 @@ create table Orders
     users int not null,
     created timestamp not null,
     constraint pk_orders primary key (id),
-    constraint fk_users_orders foreign key (users) references Users(id),
+    constraint fk_users_orders foreign key (users) references Users(id)
     );
 
 create table Orders2Products
