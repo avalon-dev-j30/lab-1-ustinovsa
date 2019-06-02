@@ -28,11 +28,10 @@ create table Products
     constraint uk_id_products unique(id),
     constraint pk_products primary key(code),
     constraint fk_supplier_products foreign key (supplier) references Supplier(id),
-    constraint ch_supplier_products check (supplier>0),
     constraint ch_initial_price_products check
-    (initial_price>0 and initial_price<10000000000),
+    (initial_price>0 and initial_price<2147483647),
     constraint ch_retail_calue_products check
-    (retail_value>0 and retail_value<10000000000)
+    (retail_value>0 and retail_value<2147483647)
     );
 
 create table UserInfo
@@ -62,10 +61,8 @@ create table Users
     constraint pk_users primary key(email),
     constraint uk_id_users unique(id),
     constraint uk_info_users unique(info),
-    constraint ch_info_users check (info>0),
     constraint fk_info_users foreign key (info) references UserInfo(id),
-    constraint fk_roles_users foreign key (roles) references Roles(id),
-    constraint ch_roles_users check (roles>0)
+    constraint fk_roles_users foreign key (roles) references Roles(id)
     );
 
 create table Orders
@@ -85,9 +82,7 @@ create table Orders2Products
     constraint fk_orders_order2products foreign key (orders)
     references Orders(id),
     constraint fk_products_order2products foreign key (products)
-    references Products(id),
-    constraint ch_orders_orders2products check (orders>0),
-    constraint ch_products_orders2products check (products>0)
+    references Products(id)
     );
 
 insert into Supplier(name, phone) values 
